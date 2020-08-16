@@ -1,73 +1,66 @@
-class LlvmAT6 < Formula
+class LlvmAT4 < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
-  url "https://releases.llvm.org/6.0.1/llvm-6.0.1.src.tar.xz"
-  sha256 "b6d6c324f9c71494c0ccaf3dac1f16236d970002b42bb24a6c9e1634f7d0f4e2"
-  license "NCSA"
-  revision 3
+  url "https://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz"
+  sha256 "da783db1f82d516791179fe103c71706046561f7972b18f0049242dee6712b51"
+  revision 1
 
   bottle do
     cellar :any
-    sha256 "3b8315438ee3bf9eaed52b8f293e5aabbbfde7bcab4eded5de9a62b214d0b8b9" => :catalina
-    sha256 "5f628b4b14fe10a7b3654902a126956561983ba7aa96dc1d519bfdde5b0552c0" => :mojave
-    sha256 "bc740b2c28da83adc7bbfecb1c76a1777a963236de52af18f4413d6b090119ec" => :high_sierra
-  end
-
-  # Clang cannot find system headers if Xcode CLT is not installed
-  pour_bottle? do
-    reason "The bottle needs the Xcode CLT to be installed."
-    satisfy { MacOS::CLT.installed? }
+    rebuild 1
+    sha256 "71636f7639720777e3e26c6d06456706cc79ad9bac08ba9d9100becfb903b210" => :mojave
+    sha256 "acd6bae928b7a8d339b500e1571bc691e2bcfabfd08b6c9c74ff6ef962a2bbe4" => :high_sierra
+    sha256 "e240000e773bbd10c9aac0eba8b510137a43929100b20b56e440ebca14dc7276" => :sierra
   end
 
   keg_only :versioned_formula
 
-  # https://llvm.org/docs/GettingStarted.html#requirement
   depends_on "cmake" => :build
   depends_on "libffi"
 
   resource "clang" do
-    url "https://releases.llvm.org/6.0.1/cfe-6.0.1.src.tar.xz"
-    sha256 "7c243f1485bddfdfedada3cd402ff4792ea82362ff91fbdac2dae67c6026b667"
+    url "https://releases.llvm.org/4.0.1/cfe-4.0.1.src.tar.xz"
+    sha256 "61738a735852c23c3bdbe52d035488cdb2083013f384d67c1ba36fabebd8769b"
   end
 
   resource "clang-extra-tools" do
-    url "https://releases.llvm.org/6.0.1/clang-tools-extra-6.0.1.src.tar.xz"
-    sha256 "0d2e3727786437574835b75135f9e36f861932a958d8547ced7e13ebdda115f1"
+    url "https://releases.llvm.org/4.0.1/clang-tools-extra-4.0.1.src.tar.xz"
+    sha256 "35d1e64efc108076acbe7392566a52c35df9ec19778eb9eb12245fc7d8b915b6"
   end
 
   resource "compiler-rt" do
-    url "https://releases.llvm.org/6.0.1/compiler-rt-6.0.1.src.tar.xz"
-    sha256 "f4cd1e15e7d5cb708f9931d4844524e4904867240c306b06a4287b22ac1c99b9"
+    url "https://releases.llvm.org/4.0.1/compiler-rt-4.0.1.src.tar.xz"
+    sha256 "a3c87794334887b93b7a766c507244a7cdcce1d48b2e9249fc9a94f2c3beb440"
   end
 
   resource "libcxx" do
-    url "https://releases.llvm.org/6.0.1/libcxx-6.0.1.src.tar.xz"
-    sha256 "7654fbc810a03860e6f01a54c2297a0b9efb04c0b9aa0409251d9bdb3726fc67"
+    url "https://releases.llvm.org/4.0.1/libcxx-4.0.1.src.tar.xz"
+    sha256 "520a1171f272c9ff82f324d5d89accadcec9bc9f3c78de11f5575cdb99accc4c"
   end
 
   resource "libunwind" do
-    url "https://releases.llvm.org/6.0.1/libunwind-6.0.1.src.tar.xz"
-    sha256 "a8186c76a16298a0b7b051004d0162032b9b111b857fbd939d71b0930fd91b96"
+    url "https://releases.llvm.org/4.0.1/libunwind-4.0.1.src.tar.xz"
+    sha256 "3b072e33b764b4f9b5172698e080886d1f4d606531ab227772a7fc08d6a92555"
   end
 
   resource "lld" do
-    url "https://releases.llvm.org/6.0.1/lld-6.0.1.src.tar.xz"
-    sha256 "e706745806921cea5c45700e13ebe16d834b5e3c0b7ad83bf6da1f28b0634e11"
+    url "https://releases.llvm.org/4.0.1/lld-4.0.1.src.tar.xz"
+    sha256 "63ce10e533276ca353941ce5ab5cc8e8dcd99dbdd9c4fa49f344a212f29d36ed"
   end
 
   resource "lldb" do
-    url "https://releases.llvm.org/6.0.1/lldb-6.0.1.src.tar.xz"
-    sha256 "6b8573841f2f7b60ffab9715c55dceff4f2a44e5a6d590ac189d20e8e7472714"
+    url "https://releases.llvm.org/4.0.1/lldb-4.0.1.src.tar.xz"
+    sha256 "8432d2dfd86044a0fc21713e0b5c1d98e1d8aad863cf67562879f47f841ac47b"
   end
 
   resource "openmp" do
-    url "https://releases.llvm.org/6.0.1/openmp-6.0.1.src.tar.xz"
-    sha256 "66afca2b308351b180136cf899a3b22865af1a775efaf74dc8a10c96d4721c5a"
+    url "https://releases.llvm.org/4.0.1/openmp-4.0.1.src.tar.xz"
+    sha256 "ec693b170e0600daa7b372240a06e66341ace790d89eaf4a843e8d56d5f4ada4"
   end
 
   resource "polly" do
-    url "https://releases.llvm.org/6.0.1/polly-6.0.1.src.tar.xz"
-    sha256 "e7765fdf6c8c102b9996dbb46e8b3abc41396032ae2315550610cf5a1ecf4ecc"
+    url "https://releases.llvm.org/4.0.1/polly-4.0.1.src.tar.xz"
+    sha256 "b443bb9617d776a7d05970e5818aa49aa2adfb2670047be8e9f242f58e84f01a"
   end
 
   def install
@@ -109,11 +102,6 @@ class LlvmAT6 < Formula
       -DLLVM_CREATE_XCODE_TOOLCHAIN=ON
     ]
 
-    if MacOS.version >= :mojave
-      sdk_path = MacOS::CLT.installed? ? "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk" : MacOS.sdk_path
-      args << "-DDEFAULT_SYSROOT=#{sdk_path}"
-    end
-
     mkdir "build" do
       system "cmake", "-G", "Unix Makefiles", "..", *(std_cmake_args + args)
       system "make"
@@ -136,11 +124,10 @@ class LlvmAT6 < Formula
     (lib/"python2.7/site-packages").install buildpath/"tools/clang/bindings/python/clang"
   end
 
-  def caveats
-    <<~EOS
-      To use the bundled libc++ please add the following LDFLAGS:
-        LDFLAGS="-L#{opt_lib} -Wl,-rpath,#{opt_lib}"
-    EOS
+  def caveats; <<~EOS
+    To use the bundled libc++ please add the following LDFLAGS:
+      LDFLAGS="-L#{opt_lib} -Wl,-rpath,#{opt_lib}"
+  EOS
   end
 
   test do
@@ -150,7 +137,6 @@ class LlvmAT6 < Formula
       #include <stdlib.h>
       #include <stdio.h>
       #include <omp.h>
-
       int main() {
           #pragma omp parallel num_threads(4)
           {
@@ -160,10 +146,8 @@ class LlvmAT6 < Formula
       }
     EOS
 
-    clean_version = version.to_s[/(\d+\.?)+/]
-
     system "#{bin}/clang", "-L#{lib}", "-fopenmp", "-nobuiltininc",
-                           "-I#{lib}/clang/#{clean_version}/include",
+                           "-I#{lib}/clang/#{version}/include",
                            "omptest.c", "-o", "omptest"
     testresult = shell_output("./omptest")
 
@@ -178,7 +162,6 @@ class LlvmAT6 < Formula
 
     (testpath/"test.c").write <<~EOS
       #include <stdio.h>
-
       int main()
       {
         printf("Hello World!\\n");
@@ -188,7 +171,6 @@ class LlvmAT6 < Formula
 
     (testpath/"test.cpp").write <<~EOS
       #include <iostream>
-
       int main()
       {
         std::cout << "Hello World!" << std::endl;
@@ -196,73 +178,52 @@ class LlvmAT6 < Formula
       }
     EOS
 
-    # Testing default toolchain and SDK location.
-    system "#{bin}/clang++", "-v",
-           "-std=c++11", "test.cpp", "-o", "test++"
-    assert_includes MachO::Tools.dylibs("test++"), "/usr/lib/libc++.1.dylib"
-    assert_equal "Hello World!", shell_output("./test++").chomp
-    system "#{bin}/clang", "-v", "test.c", "-o", "test"
-    assert_equal "Hello World!", shell_output("./test").chomp
-
     # Testing Command Line Tools
     if MacOS::CLT.installed?
-      toolchain_path = "/Library/Developer/CommandLineTools"
-      sdk_path = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
-      system "#{bin}/clang++", "-v",
-             "-isysroot", sdk_path,
-             "-isystem", "#{toolchain_path}/usr/include/c++/v1",
-             "-isystem", "#{toolchain_path}/usr/include",
-             "-isystem", "#{sdk_path}/usr/include",
-             "-std=c++11", "test.cpp", "-o", "testCLT++"
+      libclangclt = Dir["/Library/Developer/CommandLineTools/usr/lib/clang/#{MacOS::CLT.version.to_i}*"].last { |f| File.directory? f }
+
+      system "#{bin}/clang++", "-v", "-nostdinc",
+              "-I/Library/Developer/CommandLineTools/usr/include/c++/v1",
+              "-I#{libclangclt}/include",
+              "-I/usr/include", # need it because /Library/.../usr/include/c++/v1/iosfwd refers to <wchar.h>, which CLT installs to /usr/include
+              "test.cpp", "-o", "testCLT++"
       assert_includes MachO::Tools.dylibs("testCLT++"), "/usr/lib/libc++.1.dylib"
       assert_equal "Hello World!", shell_output("./testCLT++").chomp
-      system "#{bin}/clang", "-v", "test.c", "-o", "testCLT"
+
+      system "#{bin}/clang", "-v", "-nostdinc",
+              "-I/usr/include", # this is where CLT installs stdio.h
+              "test.c", "-o", "testCLT"
       assert_equal "Hello World!", shell_output("./testCLT").chomp
     end
 
     # Testing Xcode
     if MacOS::Xcode.installed?
-      system "#{bin}/clang++", "-v",
-             "-isysroot", MacOS.sdk_path,
-             "-isystem", "#{MacOS::Xcode.toolchain_path}/usr/include/c++/v1",
-             "-isystem", "#{MacOS::Xcode.toolchain_path}/usr/include",
-             "-isystem", "#{MacOS.sdk_path}/usr/include",
-             "-std=c++11", "test.cpp", "-o", "testXC++"
+      libclangxc = Dir["#{MacOS::Xcode.toolchain_path}/usr/lib/clang/#{DevelopmentTools.clang_version}*"].last { |f| File.directory? f }
+
+      system "#{bin}/clang++", "-v", "-nostdinc",
+              "-I#{MacOS::Xcode.toolchain_path}/usr/include/c++/v1",
+              "-I#{libclangxc}/include",
+              "-I#{MacOS.sdk_path}/usr/include",
+              "test.cpp", "-o", "testXC++"
       assert_includes MachO::Tools.dylibs("testXC++"), "/usr/lib/libc++.1.dylib"
       assert_equal "Hello World!", shell_output("./testXC++").chomp
-      system "#{bin}/clang", "-v",
-             "-isysroot", MacOS.sdk_path,
-             "test.c", "-o", "testXC"
+
+      system "#{bin}/clang", "-v", "-nostdinc",
+              "-I#{MacOS.sdk_path}/usr/include",
+              "test.c", "-o", "testXC"
       assert_equal "Hello World!", shell_output("./testXC").chomp
     end
 
     # link against installed libc++
     # related to https://github.com/Homebrew/legacy-homebrew/issues/47149
-    system "#{bin}/clang++", "-v",
-           "-isystem", "#{opt_include}/c++/v1",
-           "-std=c++11", "-stdlib=libc++", "test.cpp", "-o", "testlibc++",
-           "-L#{opt_lib}", "-Wl,-rpath,#{opt_lib}"
-    assert_includes MachO::Tools.dylibs("testlibc++"), "#{opt_lib}/libc++.1.dylib"
-    assert_equal "Hello World!", shell_output("./testlibc++").chomp
-
-    (testpath/"scanbuildtest.cpp").write <<~EOS
-      #include <iostream>
-      int main() {
-        int *i = new int;
-        *i = 1;
-        delete i;
-        std::cout << *i << std::endl;
-        return 0;
-      }
-    EOS
-    assert_includes shell_output("#{bin}/scan-build clang++ scanbuildtest.cpp 2>&1"),
-      "warning: Use of memory after it is freed"
-
-    (testpath/"clangformattest.c").write <<~EOS
-      int    main() {
-          printf("Hello world!"); }
-    EOS
-    assert_equal "int main() { printf(\"Hello world!\"); }\n",
-      shell_output("#{bin}/clang-format -style=google clangformattest.c")
+    system "#{bin}/clang++", "-v", "-nostdinc",
+            "-std=c++11", "-stdlib=libc++",
+            "-I#{MacOS::Xcode.toolchain_path}/usr/include/c++/v1",
+            "-I#{libclangxc}/include",
+            "-I#{MacOS.sdk_path}/usr/include",
+            "-L#{lib}",
+            "-Wl,-rpath,#{lib}", "test.cpp", "-o", "test"
+    assert_includes MachO::Tools.dylibs("test"), "#{opt_lib}/libc++.1.dylib"
+    assert_equal "Hello World!", shell_output("./test").chomp
   end
 end
