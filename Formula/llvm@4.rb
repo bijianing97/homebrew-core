@@ -1,4 +1,4 @@
-class llvm%404 < Formula
+class llvmAT4 < Formula
   desc "Next-gen compiler infrastructure"
   homepage "https://llvm.org/"
   url "https://releases.llvm.org/4.0.1/llvm-4.0.1.src.tar.xz"
